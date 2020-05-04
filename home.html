@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>1788264 - Ice Cream</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/1788264.css">
+		<link rel="stylesheet" href="css/banner.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Changa+One" type="text/css">
+	</head>
+	<body>
+		<!-- Header -->
+		<header class="container">
+			<nav class="navbar navbar-expand-sm navbar-light px-0">
+				<a class="navbar-brand" href="home.html" id="logo">
+					<img src="images/logo.png" alt="">
+				</a>
+				<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end" id="menu">
+					<ul class="navbar-nav mt-2 mt-lg-0">
+						<li class="nav-item active">
+							<a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="about.html">About</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="menu.html">Menu</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="blog.html">Blog</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="contacts.html">Contacts</a>
+						</li>
+					</ul>
+					<form class="form-inline my-2 my-lg-0" id="form-search">
+						<div class="input-group input-group-sm">
+							<input class="form-control" type="text" id="searchtext">
+							<div class="input-group-append">
+								<button class="btn" type="submit" id="btn-search"></button>
+							</div>
+						</div>
+					</form>
+					<div id="social">
+						<a href="#" class="btn tw"></a>
+						<a href="#" class="btn fb"></a>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<!-- End Header -->
+		<div id="content">
+			<!-- Banner -->
+			<div class="container-fluid" id="banner">
+				<div class="container text-center" >
+					<h4>Tasty cake and ice-cream <br>for everyone</h4>
+					<div>
+						<a href="#" id="btn-menu">SEE OUR MENU</a>
+					</div>
+					<ul id="dots">
+						<li class="active"><span>0</span></li>
+						<li><span>1</span></li>
+						<li><span>2</span></li>
+					</ul>
+				</div>
+			</div>
+			<!-- End Banner -->
+			<!-- Main -->
+			<div class="container">
+				<div class="row my-5" id="products">
+				</div>
+			</div>	
+			<!-- End Main -->
+			<!-- About us -->
+			<div class="container-fluid about py-4">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-9">
+							<h3 class="text-white">About us</h3>
+							<div>
+								<img src="images/icon-about.png" alt="">
+								<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. In culpa provident repellendus, facilis fugiat eos nemo consectetur? Saepe, vero ut. Doloribus voluptatum laboriosam exercitationem! Ea quaerat nisi sequi cum? Doloribus.</div>
+								<div class="pt-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius ipsa maiores fuga sed facilis animi alias hic, tenetur accusamus nobis, eveniet explicabo iure minus. Cum libero repudiandae dolor excepturi aperiam. <a href="#">Read more</a></div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<form action="#" method="POST" id="form-signup">
+								<h3>Newsletter <br>Sign Up</h3>
+								<div>Please, write an e-mail:</div>
+								<div><input type="text" name="email"></div>
+								<button type="submit">SIGN UP</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End About us -->
+			<!-- News -->
+			<div class="container mb-5">
+				<h3>News</h3>
+				<div class="row" id="news">
+				</div>		
+			</div>
+			<!-- End News -->
+		</div>
+		<!-- Footer -->
+		<footer class="container-fluid">
+			<nav>
+				<ul>
+					<li class="active"><a href="home.html" >Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="menu.html">Menu</a></li>
+					<li><a href="blog.html">Blog</a></li>
+					<li><a href="contacts.html">Contacts</a></li>
+				</ul>
+			</nav>
+			<div id="copy">
+				ICE-CREAM &copy; 2019 | <a href="#">PRIVACY POLICY</a>
+			</div> 
+		</footer>
+		<!-- Footer -->
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/handlebars-v4.7.6.js"></script>
+		<script src="js/1788264.js"></script>
+
+		<!-- Products Template -->
+		<script id="products-template" type="text/handlebars-template">
+			{{#each data}}
+			<div class="col text-center">
+				<img src="{{thumbpath}}" alt="">
+				<h4>{{name}}</h4>
+				<div class="pb-2">{{summary}}</div>
+				<a href="#" class="readmore" onclick="loadData('products/{{id}}','#content','#details-template')">Read more</a>
+			</div>
+			{{/each}}
+		</script>
+		<!-- News Template -->
+		<script id="news-template" type="text/handlebars-template">
+			{{#each data}}
+			<div class="col">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="date">{{date}}</div>
+							<a href="#"  onclick="loadData('news/{{id}}','#content','#details-template')">Read more</a>
+						</div> 
+						<div class="col-sm-8">
+							<h4>{{name}}</h4>
+							<div>
+								{{summary}} 
+							</div> 
+						</div>
+					</div>
+				</div>
+			</div>
+			{{/each}}
+		</script>
+		<!-- Details Template -->
+		<script id="details-template"  type="text/handlebars-template">
+			{{#each data}}
+			<div class="container-fluid" id="small-banner"></div>
+			<div class="container py-5">
+				<h3 class="text-dark">{{name}}</h3>
+				<div>{{{description}}}</div>
+			</div>
+			{{/each}}
+		</script>
+		<!-- Execute -->
+		<script>
+			$(document).ready(function(){
+				loadData('products','#products','#products-template');
+				loadData('news','#news','#news-template');
+			});
+		</script>
+	</body>
+</html>

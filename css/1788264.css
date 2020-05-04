@@ -1,0 +1,322 @@
+body{
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif ;
+    font-size: 16px;
+    line-height: 20px;
+    color: #7c7c7c;
+}
+/* header */
+#menu li {
+    margin-left: 20px;
+    padding: 0;
+}
+#menu li a {
+    font-family: 'Changa One', cursive;
+    color: #333333;
+}
+#menu li a:hover,
+#menu li.active a {
+    color: #2fa0d5;
+    background: none;
+}
+
+#form-search{
+    display: block;
+    width: 169px;
+    height: 32px;
+    border: 1px solid #d5d5d5;
+    padding: 4px 11px 6px;
+    box-sizing: border-box;
+    border-radius: 14px;
+    margin: 0 10px;
+}
+
+#searchtext{
+    border: none;
+    background: white;
+    box-shadow: none;
+    padding: 0;
+}
+
+#btn-search{
+    border: none;
+    width: 18px;
+    background: url(../images/search_button.png) 0 0 no-repeat;
+}
+
+#social a{
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 0px;
+    height: 25px;
+    width: 27px;
+    cursor: pointer;
+}
+
+#social a.tw {
+    background: url(../images/twitter.png) 0 0 no-repeat;
+}
+#social a.tw:hover {
+    background: url(../images/twitter_active.png) 0 0 no-repeat;
+}
+
+#social a.fb {
+    background: url(../images/facebook.png) 0 0 no-repeat;
+}
+#social a.fb:hover {
+    background: url(../images/facebook_active.png) 0 0 no-repeat;
+}
+
+#banner{
+    background: url(../images/bg_slider.gif) center bottom repeat;
+
+}
+
+#banner h4{
+    font-size: 60px;
+    line-height: 60px;
+    font-family: 'Changa One', cursive;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: white;
+}
+
+#btn-menu{
+    display: inline-block;
+    font: 30px 'Changa One', cursive;
+    background-color: #FA97C2;
+    line-height: 36px;
+    text-decoration: none;
+    padding: 14px 62px;
+    border-radius: 14px;
+    margin: 30px 0;
+    color: white;
+}
+
+#dots{
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    height: 19px;
+}
+
+#dots li{
+    width: 19px;
+    height: 19px;
+    border-radius: 19px;
+    display: inline-block;
+    text-align: left;
+    text-indent: 9999px;
+    background: white;
+    margin: 0 0,5px;
+    position: relative;
+}
+
+#dots li span {
+    border-radius:  9px;
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+#dots li.active span, #dots li:hover span{
+    background: #73c926;
+}
+
+
+
+/* main */
+h4{
+    font-family: 'Changa One', cursive;
+    font-weight: 400;
+    color: #333333;
+    font-size: 26px;
+    margin: 10px 0;
+}
+
+a.readmore{
+   text-decoration: underline;
+   color: #2fa0d5; 
+}
+
+/* about */
+.about{
+    background: #FA97C2;
+    color: #814e64;  
+    padding-bottom: 20px;  
+}
+
+h3{
+    font-size: 60px;
+    font-family: 'Changa One', cursive;
+    font-weight: 400;
+    margin: 10px 0;
+}
+
+.about div > img{
+    float: left;
+    margin: 20px;
+}
+
+#form-signup{
+    border: 3px dashed #814e64;
+    padding: 20px 10px;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+#form-signup h3{
+    font-size: 30px;
+    line-height: 28px;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 10px;
+    color: white;
+}
+
+#form-signup input {
+    width: 100%;
+    height: 38px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 0 ;
+    margin: 10px 0;
+}
+
+#form-signup button{
+    float: right;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background: #333333;
+    font: 22px 'Changa One', cursive;
+    padding: 10px 30px;
+}
+
+.date{
+    text-align: center;
+    background: #73c926;
+    color: white;
+    font: 30px 'Changa One', cursive;
+    line-height: 30px;
+    border-radius: 14px;
+    padding: 8px;
+    margin: 10px;
+}
+
+footer{
+    background: url(../images/bg.gif) 0 center repeat;
+    text-align: center;
+    padding: 20px;
+}
+
+footer li{
+    display: inline-block;
+    padding: 0 90px 15px 0;
+}
+
+footer a{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+}
+
+footer a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+
+footer li.active a, 
+footer  nav a:hover{
+    color: #FA97C2;
+    text-decoration: none;
+}
+
+footer #copy{
+    color: #d5d5d5;
+}
+
+#small-banner{
+    background: url(../images/bg_slider.gif) center top repeat;
+    padding: 0.25em;
+    content: "";
+}
+
+.img-about{
+    border: none;
+    float: left;
+    border-radius: 14px;
+    margin-right : 15px;
+}
+
+#testimonial .col-sm-4{
+    background: url(../images/quot.png) top left no-repeat;
+    padding-left: 50px;
+}
+
+#testimonial h3{
+    margin-left: -10px;
+}
+
+#visions a:hover{
+    text-decoration: none;
+}
+
+/* Blog */
+#blogs img{
+    float: left;
+    border-radius: 10px;
+    border: 0.5px solid grey ;
+    padding: 2px;
+    margin-right: 10px;
+}
+
+.blog{
+    clear: both;
+}
+
+#pagination{
+    clear: both;
+    padding-top: 20px;
+}
+#categories-list{
+    list-style-type: none;
+    padding: 0;
+}
+#categories-list li{
+    padding-left: 24px;
+    padding-bottom: 10px;
+    background: url(../images/marker1.png) 0px 4px no-repeat;
+}
+
+#categories-list a{
+    color: #7c7c7c;
+    text-decoration: none;
+}
+
+
+#categories -list a:hover{
+    color: #73c926;
+}
+
+#archives-list{
+    list-style-type: none;
+    padding: 0;
+}
+#archives-list li{
+    padding-left: 24px;
+    padding-bottom: 10px;
+    background: url(../images/marker1.png) 0px 4px no-repeat;
+}
+
+#archives-list a{
+    color: #7c7c7c;
+    text-decoration: none;
+}
+
+
+#archives-list a:hover{
+    color: #73c926;
+}
