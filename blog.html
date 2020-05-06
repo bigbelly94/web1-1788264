@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<title>1788264 - About</title>
+		<title>1788264 - Blog</title>
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -61,24 +61,20 @@
         <div class="container-fluid" id="small-banner">
         </div>
         <!-- END Small Banner -->
-        <!-- Menu -->
+        <!-- Main -->
         <div class="container my-5"> 
 			<div class="row">
+				<!-- Blogs -->
 				<div class="col-sm-9">
 					<h3 class="text-dark mb-4">Blog</h3>
 					<div id="blogs">
 
 					</div>
+					<!-- End Blog -->
 					<!-- Page navigation -->
 					<div id="pagination">
-						<nav aria-label="Page navigation">
-							<ul class="pagination">
-							  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-							  <li class="page-item"><a class="page-link" href="#">2</a></li>
-							</ul>
-						</nav>
+						
 					</div>
-					
 					<!-- End Page navigation -->
 				</div>
 				<!-- Categories & Archives -->
@@ -100,7 +96,7 @@
 			</div>
 		</div>
 			
-        <!-- End Menu -->
+        <!-- End Main -->
 
 		<!-- Footer -->
 		<footer class="container-fluid">
@@ -124,17 +120,18 @@
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/handlebars-v4.7.6.js"></script>
+		<script src="js/handlebars-pagination-helper.js"></script>
 		<script src="js/1788264.js"></script>
 		<!-- Categories-list Template -->
 		<script id="categorieslist-template" type="text/handlebars-template">
 			{{#each data}}
-			<li><a href="#" onclick="loadCategory('blogs/categories/'+{{id}})">{{name}}</a></li>
+			<li><a href="#" onclick="loadBlogs('blogs/categories/'+{{id}})">{{name}}</a></li>
 			{{/each}}
 		</script>
 		<!-- Archives List Template -->
 		<script id="archiveslist-template" type="text/handlebars-template">
 			{{#each data}}
-			<li><a href="#" onclick="loadCategory('blogs/archives/'+{{month}}+'-'+{{year}})" >{{monthString}}, {{year}}</a></li>
+			<li><a href="#" onclick="loadBlogs('blogs/archives/'+{{month}}+'-'+{{year}})" >{{monthString}}, {{year}}</a></li>
 			{{/each}}
 		</script>
 		<!-- Blog Template -->
@@ -142,7 +139,7 @@
 			{{#each data.data}}
 			<div class="blog py-4">
 				<h4 class="text-dark">{{name}}</h4>
-				<div>by {{author}} in <a href="#" onclick="loadCategory('blogs/categories/'+{{category.id}})">{{category.name}}</a> on {{date}} Hits: 210 <a href="#comments" onclick="loadData('blogs/{{id}}','#blogs','#blogdetail-template')" >Comments ({{comments.length}})</a></div>
+				<div>by {{author}} in <a href="#" onclick="loadBlogs('blogs/categories/'+{{category.id}})">{{category.name}}</a> on {{date}} Hits: 210 <a href="#comments" onclick="loadData('blogs/{{id}}','#blogs','#blogdetail-template')" >Comments ({{comments.length}})</a></div>
 				<div class="py-3">
 					<img  src="{{thumbpath}}" alt="">
 					<p>{{summary}}</p>
@@ -157,7 +154,7 @@
 			{{#each data}}
 			<div class="blog py-4">
 				<h4 class="text-dark">{{name}}</h4>
-				<div>by {{author}} in <a href="#" onclick="loadCategory('blogs/categories/'+{{category.id}})">{{category.name}}</a> on {{date}} Hits: 210 <a href="#comments" onclick="loadData('blogs/{{id}}','#blogs','#blogdetail-template')" >Comments ({{comments.length}})</a></div>
+				<div>by {{author}} in <a href="#" onclick="loadBlogs('blogs/categories/'+{{category.id}})">{{category.name}}</a> on {{date}} Hits: 210 <a href="#comments" onclick="loadData('blogs/{{id}}','#blogs','#blogdetail-template')" >Comments ({{comments.length}})</a></div>
 				<div class="py-3">
 					<img  src="{{thumbpath}}" alt="">
 					<p>{{{description}}}</p>
@@ -166,6 +163,37 @@
 			<div class="py-3">
 				<h4>Leave your comments</h4>
 				<h4>Post comment as a guest</h4>
+				<form id="form-comment" onsubmit="return addComment()" method="POST" data-blog-id={{id}}>
+					<div class="row">
+						<div class="form-group col">
+							<label for="name">Name (Required)</label>
+							<input type="text" name="name" id="name" class="form-control" required>
+						</div>
+						<div class="form-group col">
+							<label for="email">Email</label>
+							<input type="email" name="email" id="email" class="form-control" required>
+						</div>
+						<div class="form-group col">
+			
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col">
+							<label for="comment"></label>
+							<textarea class="form-control" name="comment" id="comment" rows="3" required></textarea>
+						</div>
+					</div>
+					<small class="row mx-0 mb-2">
+						<div class="form-check form-check-inline col">
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" name="agree" id="agree" value="false" required> Agree to terms and conditions.
+							</label>
+						</div>
+						<div class="col text-right">
+							<button type="submit" class="btn btn-link btn-sm">Submit Comment</button>
+						</div>
+					</small>
+				</form>
 				<div class="bg-dark p-2" id="comments">COMMENTS({{comments.length}})</div>
 				{{#each comments}}
 				<div class="ml-3">
@@ -178,17 +206,114 @@
 				{{/each}}
 			</div>
 			{{/each}}
+			
+		</script>
+		
+
+		
+		<!-- Pagination Template -->
+		<script type="text/handlebars-template" id="pagination-template">
+			{{#pagination currentPage pageCount size api}}
+			<nav aria-label="Page navigation">
+				<ul class="pagination">
+					{{#unless startFromFirstPage}}
+					<li class="page-item">
+						<a class="page-link" href="#" aria-label="Previous" onclick="loadBlogs('{{api}}',1)">
+						  <span aria-hidden="true">&laquo;</span>
+						  <span class="sr-only">Previous</span>
+						</a>
+					</li>
+					{{/unless}}
+					{{#each pages}}
+						{{#if isCurrent}}
+						<li class="page-item active"><a class="page-link" href="#" onclick="loadBlogs('{{api}}',{{page}})">{{page}}</a></li>
+						{{else}}
+						<li class="page-item"><a class="page-link" href="#" onclick="loadBlogs('{{api}}',{{page}})">{{page}}</a></li>
+						{{/if}}
+					{{/each}}
+					{{#unless endAtLastPage}}
+					<li class="page-item">
+						<a class="page-link" href="#" aria-label="Next" onclick="loadBlogs('{{api}}',{{pageCount}})">
+						<span aria-hidden="true">&raquo;</span>
+						<span class="sr-only">Next</span>
+						</a>
+					</li>
+					{{/unless}}
+				</ul>
+			</nav>
+			{{/pagination}}
+		</script>
+		<script>
+			function loadBlogs(request, page=1){
+				$.ajax({
+					url: `https://web1-api.herokuapp.com/api/${request}?page=${page}`,
+					cache: false,
+					success: function(data){
+						let jsonData = {
+							data: data,
+						};
+						let target = $("#blogs");
+						let template = Handlebars.compile($("#blogs-template").html());
+						target.html(template(jsonData));
+
+						jsonData = {
+							currentPage: page,
+							pageCount: data.pageCount,
+							size: 2,
+							api: request
+						};
+						target = $("#pagination");
+						template = Handlebars.compile($("#pagination-template").html());
+						target.html(template(jsonData));
+					}
+				})	
+			};
+			function addComment(){
+				let formData = {
+					name: $('#name').val(),
+					email: $('#email').val(),
+					comment: $('#comment').val(),
+					blogId: $('#form-comment').data('blog-id'),
+					agree: $('#agree').prop('checked')
+				};
+				$.ajax({
+					url: "https://web1-api.herokuapp.com/api/users/authenticate",
+					dataType: "json",
+					type : "POST",
+					data: {
+						username: 'test',
+						password: '1c3cr3@m'
+					},
+					success : function(r) {
+						$.ajax({
+							url: "https://web1-api.herokuapp.com/api/users/comment",
+							dataType: "json",
+							type : "POST",
+							headers: {
+								"Authorization": 'Bearer ' + r.token
+							},
+							data: formData,
+							success : function(r) {
+								loadData(`blogs/${formData.blogId}`,'#blogs','#blogdetail-template')
+							},
+							error: function (xhr, status, error){
+								window.alert(error);
+							}
+						});	
+					},
+					error: function (xhr, status, error){
+						window.alert(error);
+					}
+				});
+				return false;
+			};
 		</script>
 		<script>
 			$(document).ready(function(){
 				loadData('blogs-categories','#categories-list','#categorieslist-template');
 				loadData('blogs-archives','#archives-list','#archiveslist-template');
-				loadData('blogs','#blogs','#blogs-template');
+				loadBlogs('blogs');
 			});
-			function loadCategory(request){
-				loadData(request,'#blogs','#blogs-template');
-			};
-			
 		</script>
 	</body>
 </html>
